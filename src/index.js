@@ -23,16 +23,18 @@ function onSearch(e) {
         return error('Input is empty! Please enter what you search.');
     }
     fetchAndMarkUp()
+    showButton()
 }
 
 
 function onLoadMore(hits) {
     fetchAndMarkUp()
+
     return
 }
 
 function fetchAndMarkUp() {
-    apiService.fetchImage().then(countHits).then(appendImageMarkup).then(showButton);
+    apiService.fetchImage().then(countHits).then(appendImageMarkup)
 
 }
 
