@@ -20,6 +20,7 @@ function onSearch(e) {
     clearImagesContainer();
     apiService.query = form.elements.query.value;
     if (apiService.query === '') {
+        hideButton()
         return error('Input is empty! Please enter what you search.');
     }
     fetchAndMarkUp()
