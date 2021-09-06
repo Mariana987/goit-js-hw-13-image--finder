@@ -38,8 +38,6 @@ function fetchAndMarkUp() {
 
 function appendImageMarkup(hits) {
     containerImages.insertAdjacentHTML('beforeend', imageCard(hits))
-
-    console.log(hits)
     return
 }
 
@@ -65,21 +63,14 @@ function hideButton() {
 function showButton() {
     btnLoadMore.classList.remove("is-hidden");
 };
-// function countHits(hits) {
-//     if (hits === 0) {
 
-//         hideButton()
-//         alert('Nothing founded! Please enter the correct name')
 
-//         return
-//     }
-// }
-
-function countHits() {
+function countHits(arr) {
 
     if (arr.length === 0) {
-        hideButton()
+
         alert('Nothing founded! Please enter the correct name')
+        hideButton()
     }
     return arr
 }
