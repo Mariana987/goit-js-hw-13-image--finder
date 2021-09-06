@@ -66,7 +66,6 @@ function showButton() {
     btnLoadMore.classList.remove("is-hidden");
 };
 
-
 function countHits(arr) {
 
     if (arr.length === 0) {
