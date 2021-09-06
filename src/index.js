@@ -12,6 +12,7 @@ const apiService = new ApiService();
 searchForm.addEventListener('submit', onSearch);
 btnLoadMore.addEventListener('click', onLoadMore);
 btnLoadMore.addEventListener('click', onSrollPage);
+hideButton()
 
 function onSearch(e) {
     e.preventDefault();
@@ -21,21 +22,22 @@ function onSearch(e) {
     if (apiService.query === '') {
         return error('Input is empty! Please enter what you search.');
     }
-
-    apiService.fetchImage().then(appendImageMarkup)
-        .catch(error => console.log(error));
-
+    fetchAndMarkUp()
 }
 
 
 function onLoadMore(hits) {
-    apiService.fetchImage().then(appendImageMarkup);
-
+    fetchAndMarkUp()
     return
+}
+
+function fetchAndMarkUp() {
+    apiService.fetchImage().then(countHits).then(appendImageMarkup).then(showButton);
 }
 
 function appendImageMarkup(hits) {
     containerImages.insertAdjacentHTML('beforeend', imageCard(hits))
+
     return
 }
 
@@ -52,27 +54,23 @@ function onSrollPage() {
     })
 
 
+};
+
+function hideButton() {
+    btnLoadMore.classList.add("is-hidden");
+};
+
+function showButton() {
+    btnLoadMore.classList.remove("is-hidden");
+};
+
+function countHits() {
+    if (length === 0) {
+
+        hideButton()
+        alert('Nothing founded! Please enter the correct name')
+
+        return
+    }
 }
-
-
-
-
-// function checkLengthArr(hits) {
-//     if (hits.length > 11) {
-
-//         btnLoadMore.style.visibility = 'visible';
-//     } else {
-//         btnLoadMore.style.visibility = 'hidden';
-//         return;
-//     }
-// }
-
- // if (length === 0) {
-    //     return error('Nothing founded! Please enter the correct name.')
-    // } // if (length === 0) {
-    //     return error('Nothing founded! Please enter the correct name.')
-    // }
-
-
-
 
